@@ -1,4 +1,11 @@
-<?php require_once 'conexao.php'; ?>
+<?php 
+$pdo = require 'conexao.php';
+
+try {
+    $pdo->query("SELECT 1");
+} catch (PDOException $e) {
+    die("Falha na verificação de conexão: " . $e->getMessage());
+}?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
