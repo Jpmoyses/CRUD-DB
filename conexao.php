@@ -1,8 +1,8 @@
 <?php
-$host = 'db';
-$db   = 'crud_exemplo';
-$user = 'usuario';
-$pass = 'usuario_senha';
+$host = getenv("DB_HOST") ?: "db";
+$db   = getenv("DB_NAME") ?: "crud_exemplo";
+$user = getenv("DB_USER") ?: "usuario";
+$pass = getenv("DB_PASSWORD") ?: "usuario_senha";
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
@@ -15,15 +15,16 @@ $options = [
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (\PDOException $e) {
-    // Adicionar informações detalhadas de debug
-    $error_info = [
-        'message' => $e->getMessage(),
-        'host' => $host,
-        'db' => $db,
-        'user' => $user,
-        'code' => $e->getCode()
-    ];
-    die("Erro de conexão: " . print_r($error_info, true));
+    // Adicione este header para mostrar o erro completo
+    header('Content-Type: text/plain');
+    die("ERRO DE CONEXÃO:\n" . $e->getMessage() . "\n\n" .
+        "Configuração usada:\n" .
+        "Host: $host\n" .
+        "Database: $db\n" .
+        "User: $user\n" .
+        "Password: " . ($pass ? '*****' : 'vazia'));
 }
-?>
+
+// Garanta que a variável $pdo está disponível globalmente
+return $pdo;
 ?>
