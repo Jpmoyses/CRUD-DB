@@ -10,7 +10,7 @@ try {
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>CRUD PHP</title>
+    <title>Crud PHP</title>
     <style>
         table { border-collapse: collapse; width: 60%; }
         th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
