@@ -1,8 +1,8 @@
 <?php
 $host = 'db';
 $db   = 'crud_exemplo';
-$user = 'root';
-$pass = '';
+$user = 'usuario';
+$pass = 'usuario_senha';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
